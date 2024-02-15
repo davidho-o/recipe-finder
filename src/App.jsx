@@ -1,27 +1,37 @@
 import './App.css';
-
+import { useEffect, useState } from 'react';
 function App() {
+  const [ingredient,setIngredient] = useState('');
+  const [lista,setList] = useState([]);
+  const handleChange = (e) =>{
+    setIngredient(e.target.value);
+  }
+  const search = async() =>{
+    console.log("searching...")
+    const result = await fetch(`https://api.edamam.com/search?q=${ingredient}&app_id=1c1ce910&app_key=
+      887fcb91823c9c068ee0d73d92e3041c`)
+    const hits = (await result.json()).hits;
+    console.log(hits);
+    setList(hits);
+  }
+
+  useEffect(()=>{
+    console.log(lista);
+  },[lista]);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src="Octocat.png" className="App-logo" alt="logo" />
-        <p>
-          GitHub Codespaces <span className="heart">♥️</span> React
-        </p>
-        <p className="small">
-          Edit <code>src/App.jsx</code> and save to reload.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </p>
-      </header>
+      <input placeholder="Search for an ingredient..." className='input' onChange={handleChange} value={ingredient}></input>
+      <button onClick={search}>Search</button>
+      <ul>
+        {lista.map((item,index)=>{
+          return(
+          <li key={index}>
+            {<img src={item.recipe.image}/>}
+            {item.recipe.label}
+          </li>
+          )
+        })}
+      </ul>
     </div>
   );
 }
