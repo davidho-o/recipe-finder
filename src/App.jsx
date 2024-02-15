@@ -20,14 +20,17 @@ function App() {
   },[lista]);
   return (
     <div className="App">
+      <div>
       <input placeholder="Search for an ingredient..." className='input' onChange={handleChange} value={ingredient}></input>
-      <button onClick={search}>Search</button>
-      <ul>
+      <button onClick={search} className='buton'>Search</button>
+      </div>
+      <ul className='list'>
         {lista.map((item,index)=>{
           return(
-          <li key={index}>
-            {<img src={item.recipe.image}/>}
+          <li key={index} className='recipe'>
+            {<img src={item.recipe.image} className='image'/>}
             {item.recipe.label}
+            {item.recipe.totalTime}
           </li>
           )
         })}

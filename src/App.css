@@ -1,6 +1,43 @@
 .input{
   width: 200px;
+  height: 30px;
+  border-radius: 15px;
+  border-color: rgb(57, 235, 57);
+  padding: 5px;
+}
+.buton{
+  height: 40px;
+  border-radius: 12px;
+  padding: 7px;
+  border: none;
+  background-color: rgb(29, 135, 29);
+  color: white;
+}
+.buton:hover{
+  cursor: pointer;
 }
 .App{
-  margin:auto;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Center the div horizontally */
+}
+.list{
+  display: flex;
+  flex-direction: row; /* Arrange items vertically */
+  flex-wrap: wrap; /*If it reaches the end it goes to another row*/
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+  list-style-type: none; /* Remove default bullet points */
+  justify-content: center;
+}
+.image{
+  padding: 5px;
+  margin: 5px;
+  border-radius: 15px;
+}
+.recipe{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
 }
